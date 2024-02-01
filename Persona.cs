@@ -40,6 +40,7 @@ namespace ControlPersonas
             fechaNacimiento = DateTime.Now;
         }
 
+        //Convierte la primera letra en mayuscula
         public void PrimeraMayuscula ()
         {            
             if (nombre.Length > 0) 

@@ -58,6 +58,7 @@ namespace ControlPersonas
                         
         }
 
+        //Muestra los datos en la pantalla
         private void Mostrar()
         {
             labelDpi.Text = persona.Dpi;

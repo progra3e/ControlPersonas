@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -59,20 +60,59 @@ namespace ControlPersonas
         }
 
         public int edad()
-        {
-            int mes = fechaNacimiento.Month;
-            int año = fechaNacimiento.Year;
 
-            //Calcular edad
-            return 0;
+        {            
+​            DateTime hoy = DateTime.Today;
+         
+            int edad = hoy.Year - fechaNacimiento.Year;
+              
+           if (fechaNacimiento.Month > hoy.Month)
+            {
+                --edad;
+            }                
+            
+​            return edad;
+​        }
+        public int edadv2()
+        {            
+            DateTime hoy = DateTime.Now;            
+
+            TimeSpan intervalo = hoy - fechaNacimiento;   
+                        
+            return (intervalo.Days / 365); ;
         }
 
         public void normalizaNombre()
-        { 
-            //Hacer todo el proceso
+        {
+            string nombre2 = "";
+            nombre = nombre.Trim();
             
+            nombre2 += char.ToUpper(nombre[0]);
+                        
+            for (int x = 1; x < nombre.Length; x++)
+            {
+                if (nombre[x - 1] == ' ')
+                {
+                    if (char.IsLetter(nombre[x]) || char.IsWhiteSpace(nombre[x]))
+                        nombre2 = nombre + char.ToUpper(nombre[x]);
+                }
+                else
+                  if (char.IsLetter(nombre[x]) || char.IsWhiteSpace(nombre[x]))
+                    nombre2 += nombre[x];
+                // nombre2 = nombre2 + nombre[x]
+
+            }            
         }
-       
+
+        public void normalizaNombrev2()
+        {
+            
+            nombre = nombre.Trim();
+            nombre = CultureInfo.InvariantCulture
+                    .TextInfo.ToTitleCase(nombre);
+
+        }
+
 
     }
 }
